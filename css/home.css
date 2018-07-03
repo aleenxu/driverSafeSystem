@@ -1,0 +1,94 @@
+/* 进度条颜色 样式*/
+
+.grad-red {
+    background: -webkit-linear-gradient(right, #fe01eb, #fba0fe);
+    /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(right, #fe01eb, #fba0fe);
+    /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(right, #fe01eb, #fba0fe);
+    /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, #fe01eb, #fba0fe);
+    /* 标准的语法 */
+}
+
+.grad-blue {
+    background: -webkit-linear-gradient(right#0068ff, #02aff7);
+    /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(right, #0068ff, #02aff7);
+    /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(right, #0068ff, #02aff7);
+    /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, #0068ff, #02aff7);
+    /* 标准的语法 */
+}
+
+.car-distribution .progress {
+    border-radius: 12px;
+    height: 12px;
+    background-color: #10194b;
+    position: relative;
+    top:3px;
+}
+
+.progress .progress-bar {
+    border-radius: 12px;
+}
+
+.dir-con-box {
+    margin-top: 20px;
+}
+
+.dir-con-box span {
+    width:55px;
+    float: left;
+    margin-right:5px;
+}
+
+.dir-weather-box {
+    margin: 20px 0;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+}
+
+.dir-weather-box .weather-con {
+    width: 390px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.city-centre,
+.suburbs,
+.outskirts {
+    position: relative;
+    display: flex;
+    -webkit-display: flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+}
+
+.car-distribution .show-value {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    display: inline-block;
+    transform: translate(50%, 0);
+    -webkit-transform: translate(50%, 0);
+    -moz-transform: translate(50%, 0);
+    -ms-transform: translate(50%, 0);
+    -o-transform: translate(50%, 0);
+}
+
+.dir-con-box #renyuan,
+#pilao,
+#cheliang,
+#shebei {
+    width: 90%;
+    position: relative;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}

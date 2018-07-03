@@ -1,0 +1,86 @@
+.dir-content-m .dir-content-map{
+    height:550px;
+    width:570px;
+    background:url(../images/bj_map.png) no-repeat center center;
+    position: relative;
+    font-size: 12px;
+    margin:auto;
+}
+.dir-content-map .map-item{
+    position: absolute;
+    text-align: center;
+    line-height:20px;
+}
+/* 北京信息定位 */
+.pos-01{
+    left:227px;
+    top:150px;
+}
+.pos-02{
+    left:290px;
+    top:230px;
+}
+.pos-03{
+    left:410px;
+    top:140px;
+}
+.pos-04{
+    left:428px;
+    top:300px;
+}
+.pos-05{
+    left:160px;
+    top:280px;
+}
+.pos-06{
+    left:298px;
+    top:290px;
+}
+.pos-07{
+    left:50px;
+    top:340px;
+}
+.pos-08{
+    left:50px;
+    top:430px;
+}
+.pos-09{
+    left:235px;
+    top:485px;
+}
+.pos-10{
+    left:345px;
+    top:440px;
+}
+hr{
+    margin:0;
+}
+.map-box{
+    position: absolute;
+    right:15px;
+    bottom:-25px;
+    text-align: center;
+}
+.map-box dl dt{
+    line-height:20px;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: flex-start;
+    font-weight: lighter;
+}
+.map-box b{
+    font-weight: bold;
+}
+.map-box mark{
+    width:55px;
+    height:1px;
+    overflow: hidden;
+    padding:0!important;
+    position: relative;
+    top:10px;
+    margin:0 8px;
+}
+.map-box span{
+    position: relative;
+    top:-10px;
+}

@@ -1,0 +1,217 @@
+/* 浮层 */
+.pop-sys-box{
+  position: absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  z-index: 5;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+}
+.driver-bg{
+  background:#0b0626;
+  padding:0;
+  position: absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  color:#fff;
+}
+.opacity-div{
+  position: absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  opacity:.8;
+  z-index: -1;
+  text-indent: -9999em;
+}
+/* 最外边的盒子 */
+.wrapCon {
+    width: 100%;
+    clear: both;
+}
+/* 最大的背景 */
+.carBg{
+    background:url(../images/login_bg.png)no-repeat;
+    background-size: cover;
+    position: absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    color:#fff;
+}
+/* 公交logo */
+.wrapCon .logo{
+    width: 350px;
+    height: 50px;
+    background:url(../images/login_logo.png)no-repeat;
+    background-size: contain;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+/* 标题文字 */
+.wrapCon .title{
+    width: 800px;
+    height: 80px;
+    background: url(../images/login_title.png)no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+}
+/* 登录主体部分 */
+.wrapCon .main-login{
+    width: 100%;
+    height:300px;
+    background: url(../images/login_middle_bg.png)no-repeat;
+    background-size: cover;
+    margin-top: 6%;
+}
+/* 中间部分 版心盒子 */
+.box{
+    width: 1000px;
+    height: 100%;
+    /* background-color: green; */
+    margin:0 auto;
+}
+.main-login .left-car{
+    width: 400px;
+    height: 250px;
+    float: left;
+    background: url(../images/animate_bus.gif) no-repeat;
+    background-size: contain;
+    margin: 25px 20px;
+}
+.main-login .right-login{
+    /* width: 380px;
+    height: 270px; */
+    /* background: red; */
+    float: right;
+    /* margin: 15px 20px; */
+}
+.form-login {
+    max-width: 330px;
+    padding: 43px 15px 15px 15px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .form-login .checkbox {
+    margin-bottom: 10px;
+  }
+  .form-login .checkbox {
+    font-weight: normal;
+    margin-bottom:30px;
+    cursor: pointer;
+  }
+  .form-login .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  .form-login .form-control:focus {
+    z-index: 2;
+  }
+  .form-login input[type="name"] {
+    margin-bottom: 14px;
+    border-radius: 0;
+    background: url(../images/user_name_little_bg.png) 0 0 rgba(8, 104, 164, 0.5) no-repeat;
+    background-size: contain;
+    border:none;
+    margin-bottom: 20px;
+    padding-left:60px;
+    color:#FFFFFF;
+    border:1px solid #021e53;
+  }
+  .form-login input[type="password"] {
+    margin-bottom: 10px;
+    border-radius: 0;
+    background: url(../images/user_password_little_bg.png) 0 0 rgba(8, 104, 164, 0.5) no-repeat;
+    background-size: contain;
+    padding-left:60px;
+    color:#FFFFFF;
+    border:1px solid #021e53;
+  }
+  .form-login button {
+    border-radius: 0;
+  }
+
+ .form-login label{
+    float: left;
+    
+ }
+ .form-login a{
+    float: right;
+    margin: 10px 0;
+    color: #fff;
+    text-decoration: none;
+ }
+ 
+ .form-login a:focus,.form-login a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+ .form-login .btn-default{
+    background: #0868a4;
+    color: #fff;
+    border:none;
+ }
+/* 版心的盒子 */
+ .box{
+    position: relative;
+ }
+ /* 中间部分的线 */
+ .box .line {
+    width: 2px;
+    height: 80%;
+    background: #0868a4;
+    position: absolute;
+    top: 30px;
+    left: 550px;
+}
+  .form-login button span{
+    width: 60px;
+    height: 10px;
+    display: inline-block;
+  }
+  /* placeholder 的字体颜色 */
+ .right-login input::-webkit-input-placeholder { /* WebKit browsers */ 
+    color: #fff; 
+  } 
+    .right-login  input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+    color: #fff; 
+  } 
+    .right-login input::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+    color: #fff; 
+  } 
+    .right-login  input:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+    color: #fff; 
+  } 
+  .right-login label span{
+      height: 12px;
+      width: 12px;
+      display: inline-block;
+      /* background:url(../images/check-2.png)no-repeat; */
+      background-size: contain;
+  }
+  .bg3{
+    background:url(../images/check-2.png);
+ }
+ 
+ .bg4{
+    background:url(../images/checked-2.png);
+ }
+
+ 
+
