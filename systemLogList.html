@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <title>日志管理</title>
+    <link rel="stylesheet" href="plugs/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="plugs/alert-tips/my-alert.css">
+    <link rel="stylesheet" href="plugs/font/iconfont.css">
+
+</head>
+<body>
+    <div class="container-fluid driver-bg">
+
+        <!-- 头部 -->
+        <div class="container-fluid dir-header">
+            <div class="dir-header-l">
+                <a href="home.html" class="dir-btn">首页</a>
+                <a href="map.html" class="dir-btn">实时监控</a>
+                <a href="videoMonitor.html" class="dir-btn">视频监控</a>
+            </div>
+            <div class="dir-header-m text-center">
+                <div class="dir-time text-center" id="time"></div>
+            </div>
+            <div class="dir-header-r pos-rel selectDl">
+                <div class="dir-info">
+                    当前用户：admin，
+                    <i>退出系统</i>
+                </div>
+                <span class="tag-jingbao">报警信息
+                    <s>0</s>条</span>
+                <a href="javascript:void(0)" class="dir-btn">信息管理</a>
+                <dl class="dir-info-pos dn">
+                    <dt>
+                        <a href="systemEquipmentList.html">设备管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemDriverList.html">驾驶员管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemCarList.html">车辆管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemStationList.html">车站管理</a>
+                    </dt>
+                </dl>
+                <a href="javascript:void(0)" class="dir-btn">系统管理</a>
+                <dl class="dir-sys-pos dn">
+                    <dt>
+                        <a href="systemUserList.html">用户管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemUserGroupList.html">用户组管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemRoleList.html">角色管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemLogList.html">日志管理</a>
+                    </dt>
+                </dl>
+            </div>
+        </div>
+
+        <!-- 中间 -->
+        <div class="container-fluid  dir-content" style="padding: 40px 50px 0">
+
+        <!-- 中间内容区 -->
+            <div class="main-content">
+                <!-- 中间内容区 -->
+                <!-- 中间内容区-tab栏 -->
+                <div class="system-banner">
+                        <div class="btn-group">
+                            <div  class=" list-blue" >日志管理</div>
+                        </div>
+                    </div>
+        
+        <!-- 表格主体部分 -->
+                <div class="middle-table">
+                    <div class="table-title">
+                        <div class="dir-btn-list">                               
+                            <label id="btnDel" class="btn-box">
+                                <i class="iconfont icon-unie639" ></i>
+                                <span>删除</span>
+                            </label>
+                        </div>
+                        <div class="right-search dir-width">
+                            <div class="search">
+                                <form>
+                                    <input type="text" placeholder="请输入关键字">
+                                    <button type="submit"><i class="iconfont icon-fangdajing"></i></button>
+                                </form>
+                            </div>
+                            <div class="daochu">
+                                <i class="iconfont icon-daochu"></i>
+                                <span>导出</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-main">
+                            <table width="" cellpadding="0" cellspacing="0" class="table2 tab-sys" align="center">
+                                    <thead>
+                                    <tr align="center">
+                                        <th class="td2" width="40"><label for="checkAll"><input type="checkbox" id="checkAll" /></label></th>
+                                        <th class="td2" width="100">用户组名称</th>
+                                        <th class="td2" width="180">用户名称</th>
+                                        <th class="td2" width="100">客户机IP</th>
+                                        <th class="td2">操作模块</th>
+                                        <th class="td2">触发动作</th>
+                                        <th class="td2" width="160">触发时间</th>
+                                        <th class="td2" width="90">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody >
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">管理组</td>
+                                        <td class="td2">李明(admin)</td>
+                                        <td class="td2">192.168.1.15</td>
+                                        <td class="td2">日志管理</td>
+                                        <td class="td2">进入日志管理主页面</td>
+                                        <td class="td2">2018-06-26 09:33:54</td>
+                                        <td class="td2"><span class="operation-btn">清除日志</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                            <td class="td2"><input type="checkbox"/></td>
+                                            <td class="td2">机动组</td>
+                                            <td class="td2">王强(test)</td>
+                                            <td class="td2">192.168.1.11</td>
+                                            <td class="td2">用户组管理</td>
+                                            <td class="td2">进入用户组管理主页面</td>
+                                            <td class="td2">2018-06-26 09:33:54</td>
+                                            <td class="td2"><span class="operation-btn">清除日志</span></td>    
+                                    </tr>
+                                    <tr align="center">
+                                            <td class="td2"><input type="checkbox"/></td>
+                                            <td class="td2">观察组</td>
+                                            <td class="td2">陈红(user001)</td>
+                                            <td class="td2">192.168.1.33</td>
+                                            <td class="td2">用户管理</td>
+                                            <td class="td2">进入用户管理主页面</td>
+                                            <td class="td2">2018-06-26 09:33:54</td>
+                                            <td class="td2"><span class="operation-btn">清除日志</span></td>    
+                                    </tr>
+                                    <tr align="center">
+                                            <td class="td2"><input type="checkbox"/></td>
+                                            <td class="td2">观察组</td>
+                                            <td class="td2">丁小甜(user002)</td>
+                                            <td class="td2">192.168.1.24</td>
+                                            <td class="td2">设备管理</td>
+                                            <td class="td2">进入设备管理主页面</td>
+                                            <td class="td2">2018-06-26 09:33:54</td>
+                                            <td class="td2"><span class="operation-btn">清除日志</span></td>    
+                                    </tr>
+                                    <tr align="center">
+                                            <td class="td2"><input type="checkbox"/></td>
+                                            <td class="td2">机动组</td>
+                                            <td class="td2">李赵刚(user003)</td>
+                                            <td class="td2">192.168.1.195</td>
+                                            <td class="td2">驾驶员管理</td>
+                                            <td class="td2">进入驾驶员管理主页面</td>
+                                            <td class="td2">2018-06-26 09:33:54</td>
+                                            <td class="td2"><span class="operation-btn">清除日志</span></td>    
+                                    </tr>
+                                    <tr align="center">
+                                            <td class="td2"><input type="checkbox"/></td>
+                                            <td class="td2">观察组</td>
+                                            <td class="td2">王良(user004)</td>
+                                            <td class="td2">192.168.1.45</td>
+                                            <td class="td2">设备管理</td>
+                                            <td class="td2">进入设备管理主页面</td>
+                                            <td class="td2">2018-06-26 09:33:54</td>
+                                            <td class="td2"><span class="operation-btn">清除日志</span></td>    
+                                    </tr>
+                                    <tr align="center">
+                                            <td class="td2"><input type="checkbox"/></td>
+                                            <td class="td2">机动组</td>
+                                            <td class="td2">郭林(user005)</td>
+                                            <td class="td2">192.168.1.38</td>
+                                            <td class="td2">车站管理</td>
+                                            <td class="td2">进入车站管理主页面</td>
+                                            <td class="td2">2018-06-26 09:33:54</td>
+                                            <td class="td2"><span class="operation-btn">清除日志</span></td>    
+                                    </tr>
+                                    <tr align="center">
+                                            <td class="td2"><input type="checkbox"/></td>
+                                            <td class="td2">机动组</td>
+                                            <td class="td2">徐景浩(user006)</td>
+                                            <td class="td2">192.168.1.88</td>
+                                            <td class="td2">日志管理</td>
+                                            <td class="td2">进入日志管理主页面</td>
+                                            <td class="td2">2018-06-26 09:33:54</td>
+                                            <td class="td2"><span class="operation-btn">清除日志</span></td>    
+                                    </tr>
+                                    <tr align="center">
+                                            <td class="td2"><input type="checkbox"/></td>
+                                            <td class="td2">行政组</td>
+                                            <td class="td2">赵天(user007)</td>
+                                            <td class="td2">192.168.1.114</td>
+                                            <td class="td2">车站管理</td>
+                                            <td class="td2">进入车站管理主页面</td>
+                                            <td class="td2">2018-06-26 09:33:54</td>
+                                            <td class="td2"><span class="operation-btn">清除日志</span></td>    
+                                    </tr>
+                                    <tr align="center">
+                                            <td class="td2"><input type="checkbox"/></td>
+                                            <td class="td2">行政组</td>
+                                            <td class="td2">明楼(user008)</td>
+                                            <td class="td2">192.168.1.19</td>
+                                            <td class="td2">设备管理</td>
+                                            <td class="td2">进入设备管理主页面</td>
+                                            <td class="td2">2018-06-26 09:33:54</td>
+                                            <td class="td2"><span class="operation-btn">清除日志</span></td>    
+                                    </tr>   
+                                </tbody>
+                            </table>
+
+             <!-- 分页 -->
+             <div class="fenye">
+                    <ul class="pagination pagination-sm">
+                            <li><a href="#">&laquo;</a></li>
+                            <li><a href="#">&lsaquo;</a></li>
+                            <li><a href="#"  class="fy-active">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&rsaquo;</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                    </ul>
+            </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+        
+        <!-- 底部 -->
+        <div class="container-fluid dir-footer">
+            <div class="dir-footer-m text-center">北京公共交通股份有限公司</div>
+            <div class="dir-footer-r">北京博研智通科技有限公司</div>
+        </div>
+    </div>
+    <script src="plugs/jquery-2.1.4/jquery.min.js"></script>
+    <script src="plugs/alert-tips/my-alert.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/list/list.js"></script>
+</body>
+
+</html>
+   
+
+   
+    

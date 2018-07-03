@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <title>驾驶员管理</title>
+    <link rel="stylesheet" href="plugs/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="plugs/alert-tips/my-alert.css">
+    <link rel="stylesheet" href="plugs/font/iconfont.css">
+
+</head>
+<body>
+    <!-- loading 浮层 -->
+    <div class="pop-layer animated dn">
+		<div id="caseViolette">
+			<div class="icon-car"></div>
+			<div class="cercle">
+				<div class="cercleCache"></div>
+			</div>
+			<div class="cercle1">
+					<div class="cercleCache"></div>
+				</div>
+			<div class="boule2"></div>
+			<div class="boule1"></div>
+			<div class="boule"></div>
+			<div id="load">
+				<p>全速加载中</p><div id="point"></div>
+			</div>
+		</div>
+		<div class="bg-black opacity-div">pop</div>
+	</div>
+    <!--导入浮层-->
+    <div class="pop-daoru-box animated dn">
+            <div class="pop-info animated pos-rel" style="width: 300px;">
+                <p>导入数据<span id="userText"></span></p>
+                <i id="tagClose"></i>
+                <table class="tab-info" width="100%" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td class="text-center"><input type="file"  placeholder="请点击" style="color: #fff;"></td>
+                        </tr>
+                        <tr id="daoru-button">
+                            <td colspan="4" class="text-center"><input type="button" value="提交" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="opacity-div driver-bg"></div>
+        </div>
+ <!-- 浮层 添加和编辑 -->
+ <div class="pop-sys-box dn animated">
+        <div class="pop-info animated pos-rel">
+            <p>驾驶员管理<span id="userText"></span></p>
+            <i id="tagClose"></i>
+            <table class="tab-info" width="100%" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td>驾驶员编号：</td>
+                        <td><input name="" type="text" class="" placeholder="请输入" /></td>
+                        <td>驾驶员姓名：</td>
+                        <td><input name="" type="text" class="" placeholder="请输入" /></td>
+                    </tr>
+                    <tr>
+                        <td>年龄：</td>
+                        <td><input name="" type="text" class="" placeholder="请输入" /></td>
+                        <td>性别：</td>
+                        <td>
+                            <select name="" class="">
+                                <option>男</option>
+                                <option>女</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>联系方式：</td>
+                        <td><input name="" type="text" class="" placeholder="请输入" /></td>
+                        <td>归属单位：</td>
+                        <td>
+                            <select name="" class="">
+                                <option>北京公交集团第一分公司</option>
+                                <option>北京公交集团第二分公司</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-center"><input type="button" value="提交" /><input type="button" value="取消" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="opacity-div driver-bg"></div>
+    </div>
+
+    <div class="container-fluid driver-bg">
+
+        <!-- 头部 -->
+        <div class="container-fluid dir-header">
+        <div class="dir-header-l">
+            <a href="home.html" class="dir-btn">首页</a>
+            <a href="map.html" class="dir-btn">实时监控</a>
+            <a href="videoMonitor.html" class="dir-btn">视频监控</a>
+        </div>
+        <div class="dir-header-m text-center">
+            <div class="dir-time text-center" id="time"></div>
+        </div>
+        <div class="dir-header-r pos-rel selectDl">
+            <div class="dir-info">
+                当前用户：admin，
+                <i>退出系统</i>
+            </div>
+            <span class="tag-jingbao">报警信息
+                <s>0</s>条</span>
+            <a href="javascript:void(0)" class="dir-btn">信息管理</a>
+            <dl class="dir-info-pos dn">
+                <dt>
+                    <a href="systemEquipmentList.html">设备管理</a>
+                </dt>
+                <dt>
+                    <a href="systemDriverList.html">驾驶员管理</a>
+                </dt>
+                <dt>
+                    <a href="systemCarList.html">车辆管理</a>
+                </dt>
+                <dt>
+                    <a href="systemStationList.html">车站管理</a>
+                </dt>
+            </dl>
+            <a href="javascript:void(0)" class="dir-btn">系统管理</a>
+            <dl class="dir-sys-pos dn">
+                <dt>
+                    <a href="systemUserList.html">用户管理</a>
+                </dt>
+                <dt>
+                    <a href="systemUserGroupList.html">用户组管理</a>
+                </dt>
+                <dt>
+                    <a href="systemRoleList.html">角色管理</a>
+                </dt>
+                <dt>
+                    <a href="systemLogList.html">日志管理</a>
+                </dt>
+            </dl>
+        </div>
+    </div>
+
+        <!-- 中间 -->
+        <div class="container-fluid  dir-content" style="padding: 40px 50px 0">
+
+        <!-- 中间内容区 -->
+        <div class="main-content">
+        <!-- 中间内容区-tab栏 -->
+        <div class="system-banner">
+                <div class="btn-group">
+                    <div  class=" list-blue" >驾驶员管理</div>
+                </div>
+            </div>
+    
+        <!-- 表格主体部分 -->
+                <div class="middle-table">
+                    <div class="table-title">
+                        <div class="dir-btn-list">
+                            <label id="btnAdd" class="btn-box">
+                                <i class="iconfont icon-tianjiaadd142" ></i>
+                                <span>添加</span>
+                            </label>
+                                
+                            <label id="btnDel" class="btn-box">
+                                <i class="iconfont icon-unie639" ></i>
+                                <span>删除</span>
+                            </label>
+                        </div>
+                        <div class="right-search dir-width">
+                            <div class="search">
+                                <form>
+                                    <input type="text" placeholder="请输入关键字">
+                                    <button type="submit"><i class="iconfont icon-fangdajing"></i></button>
+                                </form>
+                            </div>
+                            <div class="daoru" >
+                                <i class="iconfont icon-daoru"></i>
+                                <span>导入</span>
+                            </div>
+                            <div class="daochu">
+                                <i class="iconfont icon-daochu"></i>
+                                <span>导出</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-main">
+                            <table cellpadding="0" cellspacing="0" class="table2 tab-sys" align="center">
+                                    <thead>
+                                    <tr align="center">
+                                        <th class="td2" width="40"><label for="checkAll"><input type="checkbox" id="checkAll" /></label></th>
+                                        <th class="td2" width="160">序号</th>
+                                        <th class="td2">驾驶员编号</th>
+                                        <th class="td2">驾驶员姓名</th>
+                                        <th class="td2">年龄</th>
+                                        <th class="td2">性别</th>
+                                        <th class="td2">联系方式</th>
+                                        <th class="td2" width="550">归属单位</th>
+                                        <th class="td2" width="160">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody >
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">1</td>
+                                        <td class="td2">D0001</td>
+                                        <td class="td2">王天强</td>
+                                        <td class="td2">33</td>
+                                        <td class="td2">男</td>
+                                        <td class="td2">13598651512</td>
+                                        <td class="td2">北京公交集团第一分公司</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">2</td>
+                                        <td class="td2">D0002</td>
+                                        <td class="td2">赵峰</td>
+                                        <td class="td2">28</td>
+                                        <td class="td2">男</td>
+                                        <td class="td2">13552369798</td>
+                                        <td class="td2">北京公交集团第二分公司</td>
+                                        <td class="td2"><span class="operation-btn">编辑</td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">3</td>
+                                        <td class="td2">D0003</td>
+                                        <td class="td2">张天雷</td>
+                                        <td class="td2">35</td>
+                                        <td class="td2">男</td>
+                                        <td class="td2">13598652511</td>
+                                        <td class="td2">北京公交集团第一分公司</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">4</td>
+                                        <td class="td2">D0004</td>
+                                        <td class="td2">李二宝</td>
+                                        <td class="td2">41</td>
+                                        <td class="td2">男</td>
+                                        <td class="td2">13552367998</td>
+                                        <td class="td2">北京公交集团第二分公司</td>
+                                        <td class="td2"><span class="operation-btn">编辑</td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">5</td>
+                                        <td class="td2">D0005</td>
+                                        <td class="td2">陈刚</td>
+                                        <td class="td2">43</td>
+                                        <td class="td2">男</td>
+                                        <td class="td2">13598851511</td>
+                                        <td class="td2">北京公交集团第一分公司</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">6</td>
+                                        <td class="td2">D0006</td>
+                                        <td class="td2">司英</td>
+                                        <td class="td2">33</td>
+                                        <td class="td2">男</td>
+                                        <td class="td2">13556369998</td>
+                                        <td class="td2">北京公交集团第二分公司</td>
+                                        <td class="td2"><span class="operation-btn">编辑</td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">7</td>
+                                        <td class="td2">D0007</td>
+                                        <td class="td2">王小亮</td>
+                                        <td class="td2">32</td>
+                                        <td class="td2">男</td>
+                                        <td class="td2">13588651511</td>
+                                        <td class="td2">北京公交集团第一分公司</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">8</td>
+                                        <td class="td2">D0008</td>
+                                        <td class="td2">赵一明</td>
+                                        <td class="td2">26</td>
+                                        <td class="td2">男</td>
+                                        <td class="td2">13682369958</td>
+                                        <td class="td2">北京公交集团第二分公司</td>
+                                        <td class="td2"><span class="operation-btn">编辑</td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">9</td>
+                                        <td class="td2">D0009</td>
+                                        <td class="td2">刘天光</td>
+                                        <td class="td2">39</td>
+                                        <td class="td2">男</td>
+                                        <td class="td2">13598651511</td>
+                                        <td class="td2">北京公交集团第一分公司</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">10</td>
+                                        <td class="td2">D0010</td>
+                                        <td class="td2">张晓光</td>
+                                        <td class="td2">26</td>
+                                        <td class="td2">男</td>
+                                        <td class="td2">13552269998</td>
+                                        <td class="td2">北京公交集团第二分公司</td>
+                                        <td class="td2"><span class="operation-btn">编辑</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+            <!-- 分页 -->
+            <div class="fenye">
+                    <ul class="pagination pagination-sm">
+                            <li><a href="#">&laquo;</a></li>
+                            <li><a href="#">&lsaquo;</a></li>
+                            <li><a href="#"  class="fy-active">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&rsaquo;</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                    </ul>
+            </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+        
+        <!-- 底部 -->
+        <div class="container-fluid dir-footer">
+            <div class="dir-footer-m text-center">北京公共交通股份有限公司</div>
+            <div class="dir-footer-r">北京博研智通科技有限公司</div>
+        </div>
+    </div>
+    <script src="plugs/jquery-2.1.4/jquery.min.js"></script>
+    <script src="plugs/alert-tips/my-alert.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/list/list.js"></script>
+</body>
+
+</html>
+   
+
+   
+    

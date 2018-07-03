@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <title>用户组管理</title>
+    <link rel="stylesheet" href="plugs/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="plugs/alert-tips/my-alert.css">
+    <link rel="stylesheet" href="plugs/font/iconfont.css">
+
+</head>
+<body>
+        <!-- 浮层 添加和编辑 -->
+    <div class="pop-sys-box dn animated">
+        <div class="pop-info animated pos-rel">
+            <p>用户组<span id="userText"></span></p>
+            <i id="tagClose"></i>
+            <table class="tab-info" width="100%" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td>用户组名称：</td>
+                        <td><input name="" type="text" class="" placeholder="请输入" /></td>
+                    </tr>
+                    <tr>
+                        <td>用户组角色：</td>
+                        <td>
+                            <select name="" class="">
+                                <option>检查员</option>
+                                <option>开发测试员</option>
+                                <option>管理员</option>
+                                <option>超级管理员</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">备注：</td>
+                        <td>
+                            <textarea name="" rows="3" cols="45" onfocus=" if(this.value=='请输入备注') this.value=''" onblur="if(this.value=='') this.value='请输入备注'" value="请输入备注">请输入备注</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="text-center"><input type="button" value="提交" /><input type="button" value="取消" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="opacity-div driver-bg"></div>
+    </div>
+    <div class="container-fluid driver-bg">
+
+        <!-- 头部 -->
+        <div class="container-fluid dir-header">
+            <div class="dir-header-l">
+                <a href="home.html" class="dir-btn">首页</a>
+                <a href="map.html" class="dir-btn">实时监控</a>
+                <a href="videoMonitor.html" class="dir-btn">视频监控</a>
+            </div>
+            <div class="dir-header-m text-center">
+                <div class="dir-time text-center" id="time"></div>
+            </div>
+            <div class="dir-header-r pos-rel selectDl">
+                <div class="dir-info">
+                    当前用户：admin，
+                    <i>退出系统</i>
+                </div>
+                <span class="tag-jingbao">报警信息
+                    <s>0</s>条</span>
+                <a href="javascript:void(0)" class="dir-btn">信息管理</a>
+                <dl class="dir-info-pos dn">
+                    <dt>
+                        <a href="systemEquipmentList.html">设备管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemDriverList.html">驾驶员管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemCarList.html">车辆管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemStationList.html">车站管理</a>
+                    </dt>
+                </dl>
+                <a href="javascript:void(0)" class="dir-btn">系统管理</a>
+                <dl class="dir-sys-pos dn">
+                    <dt>
+                        <a href="systemUserList.html">用户管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemUserGroupList.html">用户组管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemRoleList.html">角色管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemLogList.html">日志管理</a>
+                    </dt>
+                </dl>
+            </div>
+        </div>
+
+        <!-- 中间 -->
+        <div class="container-fluid  dir-content" style="padding: 40px 50px 0">
+
+        <!-- 中间内容区 -->
+            <div class="main-content">
+                <!-- 中间内容区 -->
+                <!-- 中间内容区-tab栏 -->
+                <div class="system-banner">
+                        <div class="btn-group">
+                            <div  class=" list-blue" >用户组管理</div>
+                        </div>
+                    </div>
+        
+        <!-- 表格主体部分 -->
+                <div class="middle-table">
+                    <div class="table-title">
+                        <div class="dir-btn-list">
+                            <label id="btnAdd" class="btn-box">
+                                <i class="iconfont icon-tianjiaadd142" ></i>
+                                <span>添加</span>
+                            </label>
+                                
+                            <label id="btnDel" class="btn-box">
+                                <i class="iconfont icon-unie639" ></i>
+                                <span>删除</span>
+                            </label>
+                        </div>
+                        <div class="right-search dir-width">
+                            <div class="search">
+                                <form>
+                                    <input type="text" placeholder="请输入关键字">
+                                    <button type="submit"><i class="iconfont icon-fangdajing"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-main">
+                            <table width="" cellpadding="0" cellspacing="0" class="table2 tab-sys" align="center">
+                                    <thead>
+                                    <tr align="center">
+                                        <th class="td2" width="40"><label for="checkAll"><input type="checkbox" id="checkAll" /></label></th>
+                                        <th class="td2" width="160">序号</th>
+                                        <th class="td2" width="160">用户组名称</th>
+                                        <th class="td2">用户组角色</th>
+                                        <th class="td2" width="550">备注</th>
+                                        <th class="td2" width="160">最后更新时间</th>
+                                        <th class="td2" width="90">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody >
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">1</td>
+                                        <td class="td2">机动组</td>
+                                        <td class="td2">开发测试员</td>
+                                        <td class="td2">开发测试组</td>
+                                        <td class="td2">2018-06-06 17:29:21</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">2</td>
+                                        <td class="td2">管理组</td>
+                                        <td class="td2">开发测试员</td>
+                                        <td class="td2">开发测试组</td>
+                                        <td class="td2">2018-06-06 17:29:21</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">3</td>
+                                        <td class="td2">观察组</td>
+                                        <td class="td2">检查员</td>
+                                        <td class="td2">统计查看组</td>
+                                        <td class="td2">2018-06-06 17:29:21</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">4</td>
+                                        <td class="td2">行政组</td>
+                                        <td class="td2">管理员</td>
+                                        <td class="td2">行政主管组</td>
+                                        <td class="td2">2018-06-06 17:29:21</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">5</td>
+                                        <td class="td2">观察组</td>
+                                        <td class="td2">检查员</td>
+                                        <td class="td2">统计查看组</td>
+                                        <td class="td2">2018-06-06 17:29:21</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">6</td>
+                                        <td class="td2">机动组</td>
+                                        <td class="td2">开发测试员</td>
+                                        <td class="td2">开发测试组</td>
+                                        <td class="td2">2018-06-06 17:29:21</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">7</td>
+                                        <td class="td2">行政组</td>
+                                        <td class="td2">管理员</td>
+                                        <td class="td2">行政主管组</td>
+                                        <td class="td2">2018-06-06 17:29:21</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">8</td>
+                                        <td class="td2">行政组</td>
+                                        <td class="td2">管理员</td>
+                                        <td class="td2">行政主管组</td>
+                                        <td class="td2">2018-06-06 17:29:21</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">9</td>
+                                        <td class="td2">管理组</td>
+                                        <td class="td2">超级管理员</td>
+                                        <td class="td2">高层管理组</td>
+                                        <td class="td2">2018-06-06 17:29:21</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2"><input type="checkbox"/></td>
+                                        <td class="td2">10</td>
+                                        <td class="td2">机动组</td>
+                                        <td class="td2">开发测试员</td>
+                                        <td class="td2">开发测试组</td>
+                                        <td class="td2">2018-06-06 17:29:21</td>
+                                        <td class="td2"><span class="operation-btn">编辑</span></td>
+                                    </tr>  
+                                </tbody>
+                            </table>
+
+             <!-- 分页 -->
+             <div class="fenye">
+                    <ul class="pagination pagination-sm">
+                            <li><a href="#">&laquo;</a></li>
+                            <li><a href="#">&lsaquo;</a></li>
+                            <li><a href="#"  class="fy-active">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&rsaquo;</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                    </ul>
+            </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+        
+        <!-- 底部 -->
+        <div class="container-fluid dir-footer">
+            <div class="dir-footer-m text-center">北京公共交通股份有限公司</div>
+            <div class="dir-footer-r">北京博研智通科技有限公司</div>
+        </div>
+    </div>
+    <script src="plugs/jquery-2.1.4/jquery.min.js"></script>
+    <script src="plugs/alert-tips/my-alert.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/list/list.js"></script>
+</body>
+
+</html>
+   
+
+   
+    

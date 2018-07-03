@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <title>驾驶员行车安全管理系统</title>
+    <link rel="stylesheet" href="plugs/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/mapPos.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="plugs/alert-tips/my-alert.css">
+</head>
+
+<body>
+    <div class="container-fluid driver-bg">
+        <!-- 头部 -->
+        <div class="container-fluid dir-header">
+            <div class="dir-header-l">
+                <a href="home.html" class="dir-btn">首页</a>
+                <a href="map.html" class="dir-btn">实时监控</a>
+                <a href="videoMonitor.html" class="dir-btn">视频监控</a>
+            </div>
+            <div class="dir-header-m text-center">
+                <div class="dir-time text-center" id="time"></div>
+            </div>
+            <div class="dir-header-r pos-rel selectDl">
+                <div class="dir-info">
+                    当前用户：admin，
+                    <i>退出系统</i>
+                </div>
+                <span class="tag-jingbao">报警信息<s>0</s>条</span>
+                <a href="javascript:void(0)" class="dir-btn">信息管理</a>
+                <dl class="dir-info-pos dn">
+                    <dt>
+                        <a href="systemEquipmentList.html">设备管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemDriverList.html">驾驶员管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemCarList.html">车辆管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemStationList.html">车站管理</a>
+                    </dt>
+                </dl>
+                <a href="javascript:void(0)" class="dir-btn">系统管理</a>
+                <dl class="dir-sys-pos dn">
+                    <dt>
+                        <a href="systemUserList.html">用户管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemUserGroupList.html">用户组管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemRoleList.html">角色管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemLogList.html">日志管理</a>
+                    </dt>
+                </dl>
+            </div>
+        </div>
+        <!-- 中间 -->
+        <div id="mainMid" class="container-fluid dir-content">
+            <!-- left -->
+            <div class="dir-content-l">
+                <h5 class="dir-tit">天气情况
+                    <em class="tag-l"></em>
+                    <em class="tag-r"></em>
+                </h5>
+                <div class="dir-weather-box">
+                    <!-- <iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=48&color=%23FFFFFF&icon=1&num=3&site=12" width="410" height="45" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe> -->
+                    <div class="weather-con">
+                        <iframe id="small" style="display: none" allowtransparency="true" frameborder="0" width="220" height="84" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=2&z=1&t=1&v=0&d=1&bd=0&k=000000&f=ffffff&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=54511&w=220&h=98&align=center"></iframe>
+                        <iframe id="big" allowtransparency="true" frameborder="0" width="410" height="84" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=2&z=3&t=1&v=0&d=2&bd=0&k=000000&f=ffffff&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=54511&w=410&h=84&align=left"></iframe>
+                    </div>
+                </div>
+                <h5 class="dir-tit">车辆分布统计
+                    <em class="tag-l"></em>
+                    <em class="tag-r"></em>
+                </h5>
+
+
+                <div class="dir-con-box">
+                    <div class="car-distribution">
+
+                        <div class="city-centre  ">
+                            <div class="show-value">4456辆</div>
+                            <span>中心城区:</span>
+                            <div class="progress" style="width: 80%;">
+                                <div class="progress-bar grad-blue" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                    <span class="sr-only">60% 完成</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="suburbs">
+                            <div class="show-value">3456辆</div>
+                            <span>近郊:</span>
+                            <div class="progress " style="width: 80%;">
+                                <div class="progress-bar grad-blue" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                                    <span class="sr-only">60% 完成</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="outskirts">
+                            <div class="show-value">4276辆</div>
+                            <span>远郊:</span>
+                            <div class="progress " style="width: 80%;">
+                                <div class="progress-bar grad-blue" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 57%;">
+                                    <span class="sr-only">60% 完成</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <h5 class="dir-tit">人员分布统计
+                    <em class="tag-l"></em>
+                    <em class="tag-r"></em>
+                </h5>
+                <div class="dir-con-box">
+                    <div class="car-distribution">
+
+                        <div class="city-centre  ">
+                            <div class="show-value">4426人</div>
+                            <span>中心城区:</span>
+                            <div class="progress " style="width: 80%;">
+                                <div class="progress-bar grad-red" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                    <span class="sr-only">60% 完成</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="suburbs">
+                            <div class="show-value">3426人</div>
+                            <span>近郊:</span>
+                            <div class="progress " style="width: 80%;">
+                                <div class="progress-bar grad-red" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                    <span class="sr-only">60% 完成</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="outskirts">
+                            <div class="show-value">3526人</div>
+                            <span>远郊:</span>
+                            <div class="progress " style="width: 80%;">
+                                <div class="progress-bar grad-red" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 65%;">
+                                    <span class="sr-only">60% 完成</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <h5 class="dir-tit">人员在线统计
+                    <em class="tag-l"></em>
+                    <em class="tag-r"></em>
+                    <a href="systemPeopleEquipment.html" class="dir-more">》</a>
+                </h5>
+                <div class="dir-con-box" style="margin-top: 0;">
+                    <div id="renyuan" style="height: 175px;"></div>
+                </div>
+            </div>
+            <!-- mid -->
+            <div class="dir-content-m pos-rel">
+                <em class="tag-tl"></em>
+                <em class="tag-bl"></em>
+                <em class="tag-tr"></em>
+                <em class="tag-tb"></em>
+                <!-- map -->
+                <div class="dir-content-map">
+                    <div class="map-item pos-01">
+                        623辆
+                        <hr> 634人
+                    </div>
+                    <div class="map-item pos-02">
+                        483辆
+                        <hr> 459人
+                    </div>
+                    <div class="map-item pos-03">
+                        628辆
+                        <hr> 582人
+                    </div>
+                    <div class="map-item pos-04">
+                        281辆
+                        <hr> 272人
+                    </div>
+                    <div class="map-item pos-05">
+                        201辆
+                        <hr> 177人
+                    </div>
+                    <div class="map-item pos-06">
+                        240辆
+                        <hr> 229人
+                    </div>
+                    <div class="map-item pos-07">
+                        146辆
+                        <hr> 128人
+                    </div>
+                    <div class="map-item pos-08">
+                        287辆
+                        <hr> 268人
+                    </div>
+                    <div class="map-item pos-09">
+                        173辆
+                        <hr> 158人
+                    </div>
+                    <div class="map-item pos-10">
+                        308辆
+                        <hr> 291人
+                    </div>
+                </div>
+                <div class="map-box">
+                    <dl>
+                        <dt>
+                            <b>1.东城区</b>
+                            <mark></mark>
+                            <span>523辆
+                                <hr>451人</span>
+                        </dt>
+                        <dt>
+                            <b>2.西城区</b>
+                            <mark></mark>
+                            <span>201辆
+                                <hr>193人</span>
+                        </dt>
+                        <dt>
+                            <b>3.石景山</b>
+                            <mark></mark>
+                            <span>450辆
+                                <hr>481人</span>
+                        </dt>
+                        <dt>
+                            <b>4.海淀区</b>
+                            <mark></mark>
+                            <span>221辆
+                                <hr>201人</span>
+                        </dt>
+                        <dt>
+                            <b>5.朝阳区</b>
+                            <mark></mark>
+                            <span>280辆
+                                <hr>271人</span>
+                        </dt>
+                        <dt>
+                            <b>6.丰台区</b>
+                            <mark></mark>
+                            <span>379辆
+                                <hr>378人</span>
+                        </dt>
+                    </dl>
+                </div>
+            </div>
+            <!-- right -->
+            <div class="dir-content-r">
+                <h5 class="dir-tit">疲劳状态统计
+                    <em class="tag-l"></em>
+                    <em class="tag-r"></em>
+                    <a href="systemPeopleStatus.html" class="dir-more">》</a>
+                </h5>
+                <div class="dir-con-box" style="margin-top: 0;">
+                    <div id="pilao" style="height:190px;margin-top:-5px;"></div>
+                </div>
+                <h5 class="dir-tit">车辆状态统计
+                    <em class="tag-l"></em>
+                    <em class="tag-r"></em>
+                    <a href="systemCarStatus.html" class="dir-more">》</a>
+                </h5>
+                <div class="dir-con-box" style="margin-top: 0;">
+                    <div id="cheliang" style="height:190px;margin-top:-5px;"></div>
+                </div>
+                <h5 class="dir-tit">车辆在线统计
+                    <em class="tag-l"></em>
+                    <em class="tag-r"></em>
+                    <a href="systemCarEquipment.html" class="dir-more">》</a>
+                </h5>
+                <div class="dir-con-box" style="margin-top: 0;">
+                    <div id="shebei" style="height:175px;"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 底部 -->
+        <div class="container-fluid dir-footer">
+            <div class="dir-footer-m text-center">北京公共交通股份有限公司</div>
+            <div class="dir-footer-r">北京博研智通科技有限公司</div>
+        </div>
+    </div>
+    <script src="plugs/jquery-2.1.4/jquery.min.js"></script>
+    <script src="plugs/alert-tips/my-alert.js"></script>
+    <script src="js/echarts.js"></script>
+    <script src="js/carEcharts.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        if(screen.height <= 768){
+            document.getElementById("mainMid").style.overflowY = "scroll";
+            document.getElementById("small").style.display = "block";
+            document.getElementById("big").style.display = "none";
+            document.getElementsByClassName("dir-content-m")[0].style.cssText = "height:620px;";
+        }else if(screen.height >= 1080){
+            $(".car-distribution").children("div").css({
+                "height":"45px"
+            });
+            document.getElementById("small").style.display = "none";
+            document.getElementById("big").style.display = "block";
+            document.getElementById("renyuan").style.cssText = "height:260px";
+            document.getElementById("pilao").style.cssText = "height:225px";
+            document.getElementById("cheliang").style.cssText = "height:225px";
+            document.getElementById("shebei").style.cssText = "height:260px";
+        }
+    </script>
+</body>
+
+</html>

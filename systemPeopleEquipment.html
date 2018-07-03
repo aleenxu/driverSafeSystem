@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <title>人员状态统计</title>
+    <link rel="stylesheet" href="plugs/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="plugs/alert-tips/my-alert.css">
+    <link rel="stylesheet" href="plugs/font/iconfont.css">
+
+</head>
+<body>
+    <div class="container-fluid driver-bg">
+
+        <!-- 头部 -->
+        <div class="container-fluid dir-header">
+            <div class="dir-header-l">
+                <a href="home.html" class="dir-btn">首页</a>
+                <a href="map.html" class="dir-btn">实时监控</a>
+                <a href="videoMonitor.html" class="dir-btn">视频监控</a>
+            </div>
+            <div class="dir-header-m text-center">
+                <div class="dir-time text-center" id="time"></div>
+            </div>
+            <div class="dir-header-r pos-rel selectDl">
+                <div class="dir-info">
+                    当前用户：admin，
+                    <i>退出系统</i>
+                </div>
+                <span class="tag-jingbao">报警信息
+                    <s>0</s>条</span>
+                <a href="javascript:void(0)" class="dir-btn">信息管理</a>
+                <dl class="dir-info-pos dn">
+                    <dt>
+                        <a href="systemEquipmentList.html">设备管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemDriverList.html">驾驶员管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemCarList.html">车辆管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemStationList.html">车站管理</a>
+                    </dt>
+                </dl>
+                <a href="javascript:void(0)" class="dir-btn">系统管理</a>
+                <dl class="dir-sys-pos dn">
+                    <dt>
+                        <a href="systemUserList.html">用户管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemUserGroupList.html">用户组管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemRoleList.html">角色管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemLogList.html">日志管理</a>
+                    </dt>
+                </dl>
+            </div>
+        </div>
+
+        <!-- 中间 -->
+        <div class="container-fluid  dir-content" style="padding: 40px 50px">
+
+        <!-- 中间内容区 -->
+            <div class="main-content">
+
+       <!-- 中间内容区-tab栏 -->
+                <div class="top-banner">
+                    <div class="btn-group">
+                        <button type="button" class="btn list-orange" >客运分公司一</button>
+                        <button type="button" class="btn list-blue" >客运分公司二</button>
+                    </div>
+                </div>
+
+        <!-- 表格主体部分 -->
+                <div class="middle-table">
+                    <div class="table-title">
+                        <div class="left-checkbox">
+                            <label class="l-guzhang">
+                                <i class="guzhang" ></i>
+                                <span>异常</span>
+                            </label>
+                                
+                            <label class="l-tingyun">
+                                <i class="tingyun" ></i>
+                                <span>离线</span>
+                            </label>
+                            
+                            <label class="l-zhengchang">
+                                <i class="zhengchang" ></i> 
+                                <span>正常</span>
+                            </label>
+                        </div>
+                        <div class="right-search dir-width">
+                            <div class="search">
+                                <form>
+                                    <input type="text" placeholder="请输入关键字">
+                                    <button type="submit"><i class="iconfont icon-fangdajing"></i></button>
+                                </form>
+                            </div>
+                            <div class="daochu">
+                                <i class="iconfont icon-daochu"></i>
+                                <span>导出</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-main">
+                            <table width="" cellpadding="0" cellspacing="0" class="table2" align="center">
+                                    <thead>
+                                
+                                    <tr align="center">
+                                        <th width="50" height="33" class="td2">序号</th>
+                                        <th width="300" class="td2">设备编号</th>
+                                        <th width="250" class="td2">设备名称</th>
+                                        <th width="250" class="td2">驾驶员/车辆编号</th>
+                                        <th width="250" class="td2">使用人/车辆</th>
+                                        <th width="250" class="td2">设备状态</th>
+                                        
+                                    </tr>
+                                    </thead>
+                                    <tbody >
+                                    <tr align="center">
+                                        <td class="td2" height="33" width="150">1</td>
+                                        <td class="td2">SH0001</td>
+                                        <td class="td2">手环</td>
+                                        <td class="td2">D00001</td>
+                                        <td class="td2">王天强/21路</td>
+                                        <td class="td2">未佩戴</td>
+                                       
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2" height="33" width="150">2</td>
+                                        <td class="td2">SH0002</td>
+                                        <td class="td2">手环</td>
+                                        <td class="td2">D00002</td>
+                                        <td class="td2">李二宝/22路</td>
+                                        <td class="td2">正常</td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2" height="33" width="150">3</td>
+                                        <td class="td2">SH0003</td>
+                                        <td class="td2">手环</td>
+                                        <td class="td2">D00003</td>
+                                        <td class="td2">赵峰/23路</td>
+                                        <td class="td2">离线</td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2" height="33" width="150">4</td>
+                                        <td class="td2">SH0004</td>
+                                        <td class="td2">手环</td>
+                                        <td class="td2">D00004</td>
+                                        <td class="td2">王晓英/24路</td>
+                                        <td class="td2">异常</td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2" height="33" width="150">5</td>
+                                        <td class="td2">SH0005</td>
+                                        <td class="td2">车载</td>
+                                        <td class="td2">D00005</td>
+                                        <td class="td2">司英/25路</td>
+                                        <td class="td2">正常</td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2" height="33" width="150">6</td>
+                                        <td class="td2">SH0006</td>
+                                        <td class="td2">手环</td>
+                                        <td class="td2">D00006</td>
+                                        <td class="td2">王小亮/26路</td>
+                                        <td class="td2">正常</td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2" height="33" width="150">7</td>
+                                        <td class="td2">SH0007</td>
+                                        <td class="td2">手环</td>
+                                        <td class="td2">D00007</td>
+                                        <td class="td2">赵一明/27路</td>
+                                        <td class="td2">正常</td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2" height="33" width="150">8</td>
+                                        <td class="td2">SH0008</td>
+                                        <td class="td2">手环</td>
+                                        <td class="td2">D00008</td>
+                                        <td class="td2">刘天光/28路</td>
+                                        <td class="td2">正常</td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2" height="33" width="150">9</td>
+                                        <td class="td2">SH0009</td>
+                                        <td class="td2">手环</td>
+                                        <td class="td2">D00009</td>
+                                        <td class="td2">李小东/29路</td>
+                                        <td class="td2">正常</td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td class="td2" height="33" width="150">10</td>
+                                        <td class="td2">SH0010</td>
+                                        <td class="td2">手环</td>
+                                        <td class="td2">D00010</td>
+                                        <td class="td2">张晓光/30路</td>
+                                        <td class="td2">正常</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+             <!-- 分页 -->
+             <div class="fenye">
+                    <ul class="pagination pagination-sm">
+                            <li><a href="#">&laquo;</a></li>
+                            <li><a href="#">&lsaquo;</a></li>
+                            <li><a href="#"  class="fy-active">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&rsaquo;</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                    </ul>
+            </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+        
+        <!-- 底部 -->
+        <div class="container-fluid dir-footer">
+            <div class="dir-footer-m text-center">北京公共交通股份有限公司</div>
+            <div class="dir-footer-r">北京博研智通科技有限公司</div>
+        </div>
+    </div>
+    <script src="plugs/jquery-2.1.4/jquery.min.js"></script>
+    <script src="plugs/alert-tips/my-alert.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/list/list.js"></script>
+ 
+</body>
+
+</html>
+   
+
+   
+    

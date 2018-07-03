@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <title>视频监控</title>
+    <link rel="stylesheet" href="plugs/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/video.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="plugs/alert-tips/my-alert.css">   
+</head>
+<body>
+    <div class="container-fluid driver-bg">
+
+        <!-- 头部 -->
+        <div class="container-fluid dir-header">
+            <div class="dir-header-l">
+                <a href="home.html" class="dir-btn">首页</a>
+                <a href="map.html" class="dir-btn">实时监控</a>
+                <a href="videoMonitor.html" class="dir-btn">视频监控</a>
+            </div>
+            <div class="dir-header-m text-center">
+                <div class="dir-time text-center" id="time"></div>
+            </div>
+            <div class="dir-header-r pos-rel selectDl">
+                <div class="dir-info">
+                    当前用户：admin，
+                    <i>退出系统</i>
+                </div>
+                <span class="tag-jingbao">报警信息
+                    <s>0</s>条</span>
+                <a href="javascript:void(0)" class="dir-btn">信息管理</a>
+                <dl class="dir-info-pos dn">
+                    <dt>
+                        <a href="systemEquipmentList.html">设备管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemDriverList.html">驾驶员管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemCarList.html">车辆管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemStationList.html">车站管理</a>
+                    </dt>
+                </dl>
+                <a href="javascript:void(0)" class="dir-btn">系统管理</a>
+                <dl class="dir-sys-pos dn">
+                    <dt>
+                        <a href="systemUserList.html">用户管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemUserGroupList.html">用户组管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemRoleList.html">角色管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemLogList.html">日志管理</a>
+                    </dt>
+                </dl>
+            </div>
+        </div>
+
+        <!-- 中间 -->
+        <div class="container-fluid dir-content">
+            <div class="dir-video">
+                <video width="100%" height="125%" autoplay controls src="Avengers.mp4"></video>
+            </div>
+            
+        </div>
+        
+        <!-- 底部 -->
+        <div class="container-fluid dir-footer">
+            <div class="dir-footer-m text-center">北京公共交通股份有限公司</div>
+            <div class="dir-footer-r">北京博研智通科技有限公司</div>
+        </div>
+    </div>
+    <script src="plugs/jquery-2.1.4/jquery.min.js"></script>
+    <script src="plugs/alert-tips/my-alert.js"></script>
+    <script src="js/common.js"></script>
+    <script src="jwplayer.js"></script>
+    <script src="js/video/video.js"></script>
+    
+</body>
+</html>

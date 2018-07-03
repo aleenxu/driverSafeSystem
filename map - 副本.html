@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <title>驾驶员行车安全管理系统</title>
+    <link rel="stylesheet" href="plugs/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="plugs/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/mapMenu.css">
+    <link rel="stylesheet" href="plugs/alert-tips/my-alert.css">
+</head>
+<body>
+<!-- 浮层信息 -->
+<div class="pop-tips">
+    <div class="tips">
+        <div class="tips-top"></div>
+        <div class="tips-mid">
+            <h6>人员信息</h6><h6>车辆信息</h6>
+            <dl>
+                <dt>编号：0000001</dt>
+                <dt>姓名：王天强</dt>
+                <dt>年龄：33</dt>
+                <dt>性别：男</dt>
+                <dt>电话：13598561511</dt>
+                <dt>单位：北京公交集团第一分公司</dt>
+                <dt>疲劳值：150</dt>
+            </dl>
+            <dl>
+                <dt>车辆编号：car0001</dt>
+                <dt>车牌：京B763821</dt>
+                <dt>所属路线：26路</dt>
+                <dt>发车时间：08:20</dt>
+                <dt>到达时间：09:30</dt>
+                <dt>归属单位：北京公交集团第一分公司</dt>
+                <dt>车辆状态：故障/超速/停运/正常</dt>
+            </dl>
+        </div>
+        <div class="tips-end"></div>
+    </div>
+</div>
+<!-- 浮层功能 -->
+<div class="pop-tips">
+    <div class="tips-methods">
+        <p></p>
+        <dl>
+            <dd>轨迹回放：<em class="icon-play trackTeplay"></em></dd>
+            <dd>视频监控：<em class="icon-arrow"></em></dd>
+            <dd>短信：<input type="text" /><em class="icon-arrow"></em></dd>
+            <dd>IP电话：<em class="icon-phone-green"></em><em class="icon-phone-red"></em></dd>
+        </dl>
+    </div>
+</div>    
+<!-- 浮层操作 -->
+<div class="tips-btn-methods form-date dn trackTeplayBox animated">
+    <s class="tag-s-play"></s>
+    <s class="tag-s-stop"></s>
+    <s class="tag-s-suspend"></s>
+    <s class="tag-s-fastback"></s>
+    <span>1X</span>
+    <s class="tag-s-fastforward"></s><span>时间选择:</span>
+    <input id="startT" name="startTime" data-date-format="00:00:00"  type="text" class="input-time" size="16" placeholder="yyyy-mm-dd hh:ii" readonly="" date-relative="#endT"/>
+    <span>-</span>
+    <input id="endT" name="endTime" type="text" class="input-time" size="16" placeholder="yyyy-mm-dd hh:ii" readonly=""/> 
+    <i class="tagClose"></i>
+</div>
+    <div class="container-fluid driver-bg">
+        <!-- 头部 -->
+        <div class="container-fluid dir-header">
+            <div class="dir-header-l">
+                <a href="home.html" class="dir-btn">首页</a>
+                <a href="map.html" class="dir-btn">实时监控</a>
+                <a href="videoMonitor.html" class="dir-btn">视频监控</a>
+            </div>
+            <div class="dir-header-m text-center">
+                <div class="dir-time text-center" id="time"></div>
+            </div>
+            <div class="dir-header-r pos-rel selectDl">
+                <div class="dir-info">
+                    当前用户：admin，
+                    <i>退出系统</i>
+                </div>
+                <span class="tag-jingbao">报警信息
+                    <s>0</s>条</span>
+                <a href="javascript:void(0)" class="dir-btn">信息管理</a>
+                <dl class="dir-info-pos dn">
+                    <dt>
+                        <a href="systemEquipmentList.html">设备管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemDriverList.html">驾驶员管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemCarList.html">车辆管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemStationList.html">车站管理</a>
+                    </dt>
+                </dl>
+                <a href="javascript:void(0)" class="dir-btn">系统管理</a>
+                <dl class="dir-sys-pos dn">
+                    <dt>
+                        <a href="systemUserList.html">用户管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemUserGroupList.html">用户组管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemRoleList.html">角色管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemLogList.html">日志管理</a>
+                    </dt>
+                </dl>
+            </div>
+        </div>
+        <!-- 中间 -->
+        <div class="container-fluid dir-content">
+            <!-- 边导航 -->
+            <div class="dir-right-box animated">
+                <i class="dir-arrow t-hide"></i>
+                <div class="dir-right-list">
+                    <ul id="myTab" class="dir-tab">
+                        <li class="active"><a href="#one" data-toggle="tab">人员</a></li>
+                        <li><a href="#two" data-toggle="tab">车辆</a></li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <!-- 人员 -->
+                        <div class="tab-pane fade in active" id="one">
+                            <div class="dir-scroll" id="Personnel">
+                                <h5>客运分公司一</h5>
+                                <dl class="dn animated">
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox"  />王天强
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox"  />李二宝
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />赵锋
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />陈刚
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />司英
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox"  />王小亮
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox"  />赵一明
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />刘天光
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />李小东
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />张小高
+                                        </label>
+                                    </dt>
+                                </dl>
+                                <h5>客运分公司二</h5>
+                                <dl class="dn animated">
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox"  />王鹏
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox"  />李红志
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />方康
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />康学游
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />赵一萌
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox"  />钱宝国
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox"  />陈方
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />林优
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />周英文
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />李白
+                                        </label>
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="dir-check-con" id="dir-people">
+                                <label for="Severe" class="col-pink"><s></s><input type="hidden" type="checkbox" id="Severe"/>重度</label>
+                                <label for="Light" class="col-orange"><s></s><input type="hidden" type="checkbox" id="Light" />轻度</label>
+                                <label for="Normal" class="col-normal"><s></s><input type="hidden" type="checkbox" id="Normal" />正常</label>
+                            </div>
+                            <div class="dir-btn-from">
+                                <dl>
+                                    <dd>
+                                        <em id="checkPeopleAll">全选</em>
+                                        <em id="noPeopleCheck">取消</em>
+                                    </dd>
+                                    <dd>
+                                        <span>群发短信</span>
+                                        <input type="text" />
+                                        <em class="icon-arrow"></em>
+                                    </dd>
+                                    <dd>
+                                        <span>群体轨迹回放</span>
+                                        <em class="icon-arrow"></em>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <!-- 车辆 -->
+                        <div class="tab-pane fade" id="two">
+                            <div class="dir-scroll" id="Vehicle">
+                                <h5>客运分公司一</h5>
+                                <dl class="dn animated">
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox"  />26路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox"  />18路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />12路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />32路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />58路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox"  />66路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox"  />8路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />11路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />14路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />16路
+                                        </label>
+                                    </dt>
+                                </dl>
+                                <h5>客运分公司二</h5>
+                                <dl class="dn animated">
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox"  />217路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox"  />228路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />347路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />347快
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />618路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox"  />919路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox"  />478路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />998路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />112路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox"  />119路
+                                        </label>
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="dir-check-con" id="dir-car">
+                                <label for="carSevere" class="col-pink"><s></s><input type="hidden" type="checkbox" id="carSevere"/>重度</label>
+                                <label for="carLight" class="col-orange"><s></s><input type="hidden" type="checkbox" id="carLight" />轻度</label>
+                                <label for="carNormal" class="col-normal"><s></s><input type="hidden" type="checkbox" id="carNormal" />正常</label>
+                            </div>
+                            <div class="dir-btn-from">
+                                <dl>
+                                    <dd>
+                                        <em id="checkCarAll">全选</em>
+                                        <em id="noCarCheck">取消</em>
+                                    </dd>
+                                    <dd>
+                                        <span>群发短信</span>
+                                        <input type="text" />
+                                        <em class="icon-arrow"></em>
+                                    </dd>
+                                    <dd>
+                                        <span>群体轨迹回放</span>
+                                        <em class="icon-arrow"></em>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 地图 -->
+            <div class="dir-map-box" id="baidu_map_1"></div>
+        </div>
+        <!-- 底部 -->
+        <div class="container-fluid dir-footer">
+            <div class="dir-footer-m text-center">北京公共交通股份有限公司</div>
+            <div class="dir-footer-r">北京博研智通科技有限公司</div>
+        </div>
+    </div>
+    <script src="plugs/jquery-2.1.4/jquery.min.js"></script>
+    <script src="plugs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="plugs/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="plugs/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="plugs/alert-tips/my-alert.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/map/mapMetaData.js"></script>
+    <script src="js/map/map.js"></script>
+    <!-- 百度地图 -->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+        <script type="text/javascript">
+            //创建和初始化地图函数：
+            function initMap(){
+                createMap();//创建地图
+                setMapEvent();//设置地图事件
+                addMapControl();//向地图添加控件
+                addMarker();//向地图中添加marker
+            }
+            
+            //创建地图函数：
+            function createMap(){
+                var map = new BMap.Map("baidu_map_1");//在百度地图容器中创建一个地图
+                var point = new BMap.Point(116.340254,39.990138);//定义一个中心点坐标
+                map.centerAndZoom(point,17);//设定地图的中心点和坐标并将地图显示在地图容器中
+                window.map = map;//将map变量存储在全局
+            }
+            
+            //地图事件设置函数：
+            function setMapEvent(){
+                map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+                map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+                map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+                map.enableKeyboard();//启用键盘上下左右键移动地图
+            }
+            
+            //地图控件添加函数：
+            function addMapControl(){
+                //向地图中添加缩放控件
+            var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+            map.addControl(ctrl_nav);
+                //向地图中添加缩略图控件
+            var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+            map.addControl(ctrl_ove);
+                //向地图中添加比例尺控件
+            var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+            map.addControl(ctrl_sca);
+            }
+            
+            //标注点数组
+            var markerArr = [{title:"世纪科贸大厦",content:"北京市海淀区保福寺桥世纪科贸大厦B座",point:"116.340245|39.99018",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+                 ];
+            //创建marker
+            function addMarker(){
+                for(var i=0;i<markerArr.length;i++){
+                    var json = markerArr[i];
+                    var p0 = json.point.split("|")[0];
+                    var p1 = json.point.split("|")[1];
+                    var point = new BMap.Point(p0,p1);
+                    var iconImg = createIcon(json.icon);
+                    var marker = new BMap.Marker(point,{icon:iconImg});
+                    var iw = createInfoWindow(i);
+                    var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+                    marker.setLabel(label);
+                    map.addOverlay(marker);
+                    label.setStyle({
+                                borderColor:"#808080",
+                                color:"#333",
+                                cursor:"pointer"
+                    });
+                    
+                    (function(){
+                        var index = i;
+                        var _iw = createInfoWindow(i);
+                        var _marker = marker;
+                        _marker.addEventListener("click",function(){
+                            this.openInfoWindow(_iw);
+                        });
+                        _iw.addEventListener("open",function(){
+                            _marker.getLabel().hide();
+                        })
+                        _iw.addEventListener("close",function(){
+                            _marker.getLabel().show();
+                        })
+                        label.addEventListener("click",function(){
+                            _marker.openInfoWindow(_iw);
+                        })
+                        if(!!json.isOpen){
+                            label.hide();
+                            _marker.openInfoWindow(_iw);
+                        }
+                    })()
+                }
+            }
+            //创建InfoWindow
+            function createInfoWindow(i){
+                var json = markerArr[i];
+                var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+                return iw;
+            }
+            //创建一个Icon
+            function createIcon(json){
+                var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+                return icon;
+            }
+            
+            initMap();//创建和初始化地图
+        </script>
+</body>
+</html>

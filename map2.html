@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <title>驾驶员行车安全管理系统</title>
+    <link rel="stylesheet" href="plugs/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="plugs/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/mapMenu.css">
+    <link rel="stylesheet" href="plugs/alert-tips/my-alert.css">
+    
+    <script type="text/javascript">
+    	//创建基础数据
+    	var stationList = [
+    		{"id":"S0001", "longitude" : 116.5003967285, "latitude" : 40.0000049727},
+    		{"id":"S0002", "longitude" : 116.5003967285, "latitude" : 40.0000049727},
+    		{"id":"S0003", "longitude" : 116.4646911621, "latitude" : 40.0286660058},
+    		{"id":"S0004", "longitude" : 116.4689826965, "latitude" : 40.0834565551},
+    		{"id":"S0005", "longitude" : 116.4382553101, "latitude" : 40.0795162596},
+    		{"id":"S0006", "longitude" : 116.4336204529, "latitude" : 40.1032859129},
+    		{"id":"S0007", "longitude" : 116.4128494263, "latitude" : 40.1035485147},
+    		{"id":"S0008", "longitude" : 116.4135360718, "latitude" : 40.0830625358},
+    		{"id":"S0009", "longitude" : 116.4140510559, "latitude" : 40.0671685239},
+    		{"id":"S0010", "longitude" : 116.4119911194, "latitude" : 40.0524534054},
+    		{"id":"S0011", "longitude" : 116.3598060608, "latitude" : 40.0700586201},
+    		{"id":"S0012", "longitude" : 116.3204956055, "latitude" : 40.0709781705},
+    		{"id":"S0013", "longitude" : 116.4441776276, "latitude" : 39.8716060311},
+    		{"id":"S0014", "longitude" : 116.4216041565, "latitude" : 39.8710131663},
+    		{"id":"S0015", "longitude" : 116.3998031616, "latitude" : 39.8712107885},
+    		{"id":"S0016", "longitude" : 116.3744831085, "latitude" : 39.8699591716},
+    		{"id":"S0017", "longitude" : 116.3488197327, "latitude" : 39.8677852566},
+    		{"id":"S0018", "longitude" : 116.3128566742, "latitude" : 39.8670606029},
+    		{"id":"S0019", "longitude" : 116.2943172455, "latitude" : 39.8658089104},
+    		{"id":"S0020", "longitude" : 116.4210462570, "latitude" : 39.8820791321},
+    		{"id":"S0021", "longitude" : 116.4189863205, "latitude" : 39.8929786800},
+    		{"id":"S0022", "longitude" : 116.4060688019, "latitude" : 39.8926494139},
+    		{"id":"S0023", "longitude" : 116.4073562622, "latitude" : 39.9006501320},
+    		{"id":"S0024", "longitude" : 116.4068412781, "latitude" : 39.9082878062},
+    		{"id":"S0025", "longitude" : 116.4068412781, "latitude" : 39.9238238943},
+    		{"id":"S0026", "longitude" : 116.4044380188, "latitude" : 39.9325120337},
+    		{"id":"S0027", "longitude" : 116.3711357117, "latitude" : 39.9321171422},
+    		{"id":"S0028", "longitude" : 116.3560295105, "latitude" : 39.9319855112},
+    		{"id":"S0029", "longitude" : 116.3258171082, "latitude" : 39.9317222484},
+    		{"id":"S0030", "longitude" : 116.5027999878, "latitude" : 39.9355394596}
+    	];//车站列表
+    	var pers_car_list = [];//点位列表
+    	var pers_car = {};
+    	pers_car = {
+    			"id":"D0001_C0001",
+    			"longitude" : 116.3340000000, 
+    			"latitude" : 39.9849500000, 
+    			"personnel_info" : {"id":"D0001", "name":"王天强", "age":"27", "sex":"男", "phone":"13598561511", "company":"北京公交集团第一分公司", "tired_value":"100"}, 
+    			"car_info" : {"id":"C0001", "plate_number":"京B763821", "route":"26路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第一分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0002_C0002",
+    			"longitude" : 116.2446212769, 
+    			"latitude" : 39.8725941279, 
+    			"personnel_info" : {"id":"D0002", "name":"李二宝", "age":"28", "sex":"男", "phone":"13598561511", "company":"北京公交集团第一分公司", "tired_value":"105"}, 
+    			"car_info" : {"id":"C0002", "plate_number":"京B763821", "route":"18路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第一分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0003_C0003",
+    			"longitude" : 116.4365386963, 
+    			"latitude" : 40.1011850626, 
+    			"personnel_info" : {"id":"D0003", "name":"赵锋", "age":"29", "sex":"男", "phone":"13598561511", "company":"北京公交集团第一分公司", "tired_value":"110"}, 
+    			"car_info" : {"id":"C0003", "plate_number":"京B763821", "route":"12路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第一分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0004_C0004",
+    			"longitude" : 116.3867568970, 
+    			"latitude" : 40.0327406797, 
+    			"personnel_info" : {"id":"D0004", "name":"陈刚", "age":"30", "sex":"男", "phone":"13598561511", "company":"北京公交集团第一分公司", "tired_value":"115"}, 
+    			"car_info" : {"id":"C0004", "plate_number":"京B763821", "route":"32路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第一分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0005_C0005",
+    			"longitude" : 116.4899253845, 
+    			"latitude" : 39.8235673766, 
+    			"personnel_info" : {"id":"D0005", "name":"司英", "age":"31", "sex":"男", "phone":"13598561511", "company":"北京公交集团第一分公司", "tired_value":"120"}, 
+    			"car_info" : {"id":"C0005", "plate_number":"京B763821", "route":"58路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第一分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0006_C0006",
+    			"longitude" : 116.4210891724, 
+    			"latitude" : 39.8140742842, 
+    			"personnel_info" : {"id":"D0006", "name":"王小亮", "age":"32", "sex":"男", "phone":"13598561511", "company":"北京公交集团第一分公司", "tired_value":"125"}, 
+    			"car_info" : {"id":"C0006", "plate_number":"京B763821", "route":"66路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第一分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0007_C0007",
+    			"longitude" : 116.3152599335, 
+    			"latitude" : 39.8753607230, 
+    			"personnel_info" : {"id":"D0007", "name":"赵一明", "age":"33", "sex":"男", "phone":"13598561511", "company":"北京公交集团第一分公司", "tired_value":"130"}, 
+    			"car_info" : {"id":"C0007", "plate_number":"京B763821", "route":"8路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第一分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0008_C0008",
+    			"longitude" : 116.5664863586, 
+    			"latitude" : 39.8823425858, 
+    			"personnel_info" : {"id":"D0008", "name":"刘天光", "age":"34", "sex":"男", "phone":"13598561511", "company":"北京公交集团第一分公司", "tired_value":"135"}, 
+    			"car_info" : {"id":"C0008", "plate_number":"京B763821", "route":"11路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第一分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0009_C0009",
+    			"longitude" : 116.3655567169, 
+    			"latitude" : 39.8914311156, 
+    			"personnel_info" : {"id":"D0009", "name":"李小东", "age":"35", "sex":"男", "phone":"13598561511", "company":"北京公交集团第一分公司", "tired_value":"140"}, 
+    			"car_info" : {"id":"C0009", "plate_number":"京B763821", "route":"14路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第一分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0010_C0010",
+    			"longitude" : 116.4442634583, 
+    			"latitude" : 39.8944603578, 
+    			"personnel_info" : {"id":"D0010", "name":"张小高", "age":"36", "sex":"男", "phone":"13598561511", "company":"北京公交集团第一分公司", "tired_value":"145"}, 
+    			"car_info" : {"id":"C0010", "plate_number":"京B763821", "route":"16路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第一分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	
+    	pers_car = {
+    			"id":"D0011_C0011",
+    			"longitude" : 116.4734458923, 
+    			"latitude" : 39.8776002658, 
+    			"personnel_info" : {"id":"D0011", "name":"王鹏", "age":"37", "sex":"男", "phone":"13598561511", "company":"北京公交集团第二分公司", "tired_value":"123"}, 
+    			"car_info" : {"id":"C0011", "plate_number":"京B763821", "route":"217路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第二分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0012_C0012",
+    			"longitude" : 116.4748191833, 
+    			"latitude" : 39.9469898157, 
+    			"personnel_info" : {"id":"D0012", "name":"李红志", "age":"38", "sex":"男", "phone":"13598561511", "company":"北京公交集团第二分公司", "tired_value":"126"}, 
+    			"car_info" : {"id":"C0012", "plate_number":"京B763821", "route":"228路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第二分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0013_C0013",
+    			"longitude" : 116.3968849182, 
+    			"latitude" : 39.9302742851, 
+    			"personnel_info" : {"id":"D0013", "name":"方康", "age":"39", "sex":"男", "phone":"13598561511", "company":"北京公交集团第二分公司", "tired_value":"129"}, 
+    			"car_info" : {"id":"C0013", "plate_number":"京B763821", "route":"347路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第二分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0014_C0014",
+    			"longitude" : 116.4191150665, 
+    			"latitude" : 39.9794878548, 
+    			"personnel_info" : {"id":"D0014", "name":"康学游", "age":"40", "sex":"男", "phone":"13598561511", "company":"北京公交集团第二分公司", "tired_value":"133"}, 
+    			"car_info" : {"id":"C0014", "plate_number":"京B763821", "route":"347快", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第二分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0015_C0015",
+    			"longitude" : 116.3553428650, 
+    			"latitude" : 39.9297477453, 
+    			"personnel_info" : {"id":"D0015", "name":"赵一萌", "age":"41", "sex":"男", "phone":"13598561511", "company":"北京公交集团第二分公司", "tired_value":"136"}, 
+    			"car_info" : {"id":"C0015", "plate_number":"京B763821", "route":"618路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第二分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0016_C0016",
+    			"longitude" : 116.3426399231, 
+    			"latitude" : 39.9996104708, 
+    			"personnel_info" : {"id":"D0016", "name":"钱宝国", "age":"42", "sex":"男", "phone":"13598561511", "company":"北京公交集团第二分公司", "tired_value":"139"}, 
+    			"car_info" : {"id":"C0016", "plate_number":"京B763821", "route":"919路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第二分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0017_C0017",
+    			"longitude" : 116.2914848328, 
+    			"latitude" : 39.9419887464, 
+    			"personnel_info" : {"id":"D0017", "name":"陈方", "age":"43", "sex":"男", "phone":"13598561511", "company":"北京公交集团第二分公司", "tired_value":"143"}, 
+    			"car_info" : {"id":"C0017", "plate_number":"京B763821", "route":"478路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第二分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0018_C0018",
+    			"longitude" : 116.3105392456, 
+    			"latitude" : 39.9704110100, 
+    			"personnel_info" : {"id":"D0018", "name":"林优", "age":"44", "sex":"男", "phone":"13598561511", "company":"北京公交集团第二分公司", "tired_value":"146"}, 
+    			"car_info" : {"id":"C0018", "plate_number":"京B763821", "route":"998路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第二分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0019_C0019",
+    			"longitude" : 116.3670158386, 
+    			"latitude" : 39.9525168880, 
+    			"personnel_info" : {"id":"D0019", "name":"周英文", "age":"45", "sex":"男", "phone":"13598561511", "company":"北京公交集团第二分公司", "tired_value":"149"}, 
+    			"car_info" : {"id":"C0019", "plate_number":"京B763821", "route":"112路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第二分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    	pers_car = {
+    			"id":"D0020_C0020",
+    			"longitude" : 116.2660789490, 
+    			"latitude" : 40.0478542792,
+    			"personnel_info" : {"id":"D0020", "name":"李白", "age":"46", "sex":"男", "phone":"13598561511", "company":"北京公交集团第二分公司", "tired_value":"111"}, 
+    			"car_info" : {"id":"C0020", "plate_number":"京B763821", "route":"119路", "start_time":"08:20", "end_time":"09:30", "company":"北京公交集团第二分公司", "car_state":"故障/超速/停运/正常"}
+    		};
+    	pers_car_list.push(pers_car);
+    
+    </script>
+    
+</head>
+<body>
+	<div id="popup" style="width: 592px;height: 173px;" >
+    </div>
+    
+    <!-- 浮层操作 -->
+	<div class="tips-btn-methods form-date dn trackTeplayBox animated">
+	    <s class="tag-s-play"></s>
+	    <s class="tag-s-stop"></s>
+	    <s class="tag-s-suspend"></s>
+	    <s class="tag-s-fastback"></s>
+	    <span>1X</span>
+	    <s class="tag-s-fastforward"></s><span>时间选择:</span>
+	    <input id="startT" name="startTime" data-date-format="00:00:00"  type="text" class="input-time" size="16" placeholder="yyyy-mm-dd hh:ii" readonly="" date-relative="#endT"/>
+	    <span>-</span>
+	    <input id="endT" name="endTime" type="text" class="input-time" size="16" placeholder="yyyy-mm-dd hh:ii" readonly=""/> 
+	    <i class="tagClose"></i>
+	</div>
+    
+    
+    <div class="container-fluid driver-bg">
+        <!-- 头部 -->
+        <div class="container-fluid dir-header">
+            <div class="dir-header-l">
+                <a href="home.html" class="dir-btn">首页</a>
+                <a href="map.html" class="dir-btn">实时监控</a>
+                <a href="videoMonitor.html" class="dir-btn">视频监控</a>
+            </div>
+            <div class="dir-header-m text-center">
+                <div class="dir-time text-center" id="time"></div>
+            </div>
+            <div class="dir-header-r pos-rel selectDl">
+                <div class="dir-info">
+                    当前用户：admin，
+                    <i>退出系统</i>
+                </div>
+                <span class="tag-jingbao">报警信息
+                    <s>0</s>条</span>
+                <a href="javascript:void(0)" class="dir-btn">信息管理</a>
+                <dl class="dir-info-pos dn">
+                    <dt>
+                        <a href="systemEquipmentList.html">设备管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemDriverList.html">驾驶员管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemCarList.html">车辆管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemStationList.html">车站管理</a>
+                    </dt>
+                </dl>
+                <a href="javascript:void(0)" class="dir-btn">系统管理</a>
+                <dl class="dir-sys-pos dn">
+                    <dt>
+                        <a href="systemUserList.html">用户管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemUserGroupList.html">用户组管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemRoleList.html">角色管理</a>
+                    </dt>
+                    <dt>
+                        <a href="systemLogList.html">日志管理</a>
+                    </dt>
+                </dl>
+            </div>
+        </div>
+        <!-- 中间 -->
+        <div class="container-fluid dir-content">
+            <!-- 边导航 -->
+            <div class="dir-right-box animated">
+                <i class="dir-arrow t-hide"></i>
+                <div class="dir-right-list">
+                    <ul id="myTab" class="dir-tab">
+                        <li class="active"><a href="#one" data-toggle="tab">人员</a></li>
+                        <li><a href="#two" data-toggle="tab">车辆</a></li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <!-- 人员 -->
+                        <div class="tab-pane fade in active" id="one">
+                            <div class="dir-scroll" id="Personnel">
+                                <h5>客运分公司一</h5>
+                                <dl class="dn animated" id="">
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox" id="D0001" />王天强
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox" id="D0002" />李二宝
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="D0003" />赵锋
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="D0004" />陈刚
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="D0005" />司英
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox" id="D0006" />王小亮
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox" id="D0007" />赵一明
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="D0008" />刘天光
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="D0009" />李小东
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="D0010" />张小高
+                                        </label>
+                                    </dt>
+                                </dl>
+                                <h5>客运分公司二</h5>
+                                <dl class="dn animated">
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox" id="D0011" />王鹏
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox" id="D0012" />李红志
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="D0013" />方康
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="D0014" />康学游
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="D0015" />赵一萌
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox" id="D0016" />钱宝国
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox" id="D0017" />陈方
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="D0018" />林优
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="D0019" />周英文
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="D0020" />李白
+                                        </label>
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="dir-check-con" id="dir-people">
+                                <label for="Severe" class="col-pink"><s></s><input type="hidden" type="checkbox" id="Severe"/>重度</label>
+                                <label for="Light" class="col-orange"><s></s><input type="hidden" type="checkbox" id="Light" />轻度</label>
+                                <label for="Normal" class="col-normal"><s></s><input type="hidden" type="checkbox" id="Normal" />正常</label>
+                            </div>
+                            <div class="dir-btn-from">
+                                <dl>
+                                    <dd>
+                                        <em id="checkPeopleAll">全选</em>
+                                        <em id="noPeopleCheck">取消</em>
+                                    </dd>
+                                    <dd>
+                                        <span>群发短信</span>
+                                        <input type="text" />
+                                        <em class="icon-arrow"></em>
+                                    </dd>
+                                    <dd>
+                                        <span>群体轨迹回放</span>
+                                        <em class="icon-arrow"></em>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <!-- 车辆 -->
+                        <div class="tab-pane fade" id="two">
+                            <div class="dir-scroll" id="Vehicle">
+                                <h5>客运分公司一</h5>
+                                <dl class="dn animated">
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox" id="C0001" />26路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox" id="C0002" />18路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="C0003" />12路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="C0004" />32路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="C0005" />58路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox" id="C0006" />66路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox" id="C0007" />8路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="C0008" />11路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="C0009" />14路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="C0010" />16路
+                                        </label>
+                                    </dt>
+                                </dl>
+                                <h5>客运分公司二</h5>
+                                <dl class="dn animated">
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox" id="C0011" />217路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox" id="C0012" />228路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="C0013" />347路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="C0014" />347快
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="C0015" />618路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-pink">
+                                            <s></s><input type="hidden" type="checkbox" id="C0016" />919路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-orange">
+                                            <s></s><input type="hidden" type="checkbox" id="C0017" />478路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="C0018" />998路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="C0019" />112路
+                                        </label>
+                                    </dt>
+                                    <dt>
+                                        <label class="col-normal">
+                                            <s></s><input type="hidden" type="checkbox" id="C0020" />119路
+                                        </label>
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="dir-check-con" id="dir-car">
+                                <label for="carSevere" class="col-pink"><s></s><input type="hidden" type="checkbox" id="carSevere"/>重度</label>
+                                <label for="carLight" class="col-orange"><s></s><input type="hidden" type="checkbox" id="carLight" />轻度</label>
+                                <label for="carNormal" class="col-normal"><s></s><input type="hidden" type="checkbox" id="carNormal" />正常</label>
+                            </div>
+                            <div class="dir-btn-from">
+                                <dl>
+                                    <dd>
+                                        <em id="checkCarAll">全选</em>
+                                        <em id="noCarCheck">取消</em>
+                                    </dd>
+                                    <dd>
+                                        <span>群发短信</span>
+                                        <input type="text" />
+                                        <em class="icon-arrow"></em>
+                                    </dd>
+                                    <dd>
+                                        <span>群体轨迹回放</span>
+                                        <em class="icon-arrow"></em>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 地图 -->
+            <div class="dir-map-box" id="map"></div>
+        </div>
+        <!-- 底部 -->
+        <div class="container-fluid dir-footer">
+            <div class="dir-footer-m text-center">北京公共交通股份有限公司</div>
+            <div class="dir-footer-r">北京博研智通科技有限公司</div>
+        </div>
+    </div>
+    <script src="plugs/jquery-2.1.4/jquery.min.js"></script>
+    <script src="plugs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="plugs/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="plugs/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="plugs/alert-tips/my-alert.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/map/mapMetaData.js"></script>
+    <script src="js/map/map.js"></script>
+    
+    <!--地图定位 -->
+    <script src="olmap/js/ol.js"></script>
+    <script src="olmap/js/map.js"></script>
+    <script type="text/javascript">
+    	drawStation();
+    </script>
+</body>
+</html>
